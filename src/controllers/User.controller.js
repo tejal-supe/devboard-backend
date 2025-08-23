@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import config from "../config/environment.js";
 import User from "../models/User.model.js";
+import ApiKey from "../models/ApiKey.model.js";
 
 export const registerUserController = async (req, res) => {
   try {
@@ -86,5 +87,30 @@ export const getMeController = async (req, res) => {
       .json({ message: "User data fetched successfully", data: userData });
   } catch (error) {
     console.log("Error in get me controller", error);
+  }
+};
+
+export const createApiKey = async (req, res) => {
+  try {
+    const { keyName } = req.body;
+    const { _id } = req.user;
+    if (!keyName) {
+      return res.status(400).json({ message: "API key name required" });
+    }
+    const apiKey = await ApiKey.create({
+      user: _id,
+      name: keyName,
+    });
+
+    res.status(201).json({
+      message: "Api key generated Successfully!",
+      success: true,
+      data: {
+        key: apiKey.key,
+        expiresAt: apiKey.expiresAt,
+      },
+    });
+  } catch (error) {
+    console.log("Error in create api key controller", error);
   }
 };
