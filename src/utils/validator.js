@@ -52,7 +52,7 @@ export const validateProject = [
   body("title")
     .trim()
     .isLength({ min: 1, max: 100 })
-    .withMessage("Project title must be between 1 and 100 characters"),
+    .withMessage("Title must be between 1 and 100 characters"),
 
   body("description")
     .optional()
@@ -100,7 +100,7 @@ export const validateProjectUpdate = [
     .optional()
     .trim()
     .isLength({ min: 1, max: 100 })
-    .withMessage("Project title must be between 1 and 100 characters"),
+    .withMessage("Title must be between 1 and 100 characters"),
 
   body("description")
     .optional()

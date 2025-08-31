@@ -42,11 +42,13 @@ export const getProjectById = async (req, res) => {
   try {
     const { _id } = req.user;
     const { id } = req.params;
+
     const projectData = await Project.findOne({
-      id: id,
+      _id: id,
       userId: _id,
       isDeleted: false,
     });
+    
     if (!projectData) {
       return res.status(400).json({ message: "Data not Found" });
     }
@@ -65,7 +67,7 @@ export const updateProject = async (req, res) => {
     const { id } = req.params;
     const { _id } = req.user;
     const projectDataUpdated = await Project.findOneAndUpdate(
-      { id: id, userId, _id },
+      { _id: id, userId: _id },
       req.body,
       { new: true }
     );
@@ -88,7 +90,7 @@ export const deleteProject = async (req, res) => {
     const { id } = req.params;
     const deletedProject = await Project.findOneAndUpdate(
       {
-        id: id,
+        _id: id,
         userId: _id,
       },
       { isDeleted: true },
