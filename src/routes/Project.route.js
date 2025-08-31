@@ -1,7 +1,7 @@
 import express from "express";
 import { authenticateAPIKey } from "../middleware/apikey.middleware.js";
 import { authenticateJWT } from "../middleware/auth.middleware.js";
-import { validateProject } from "../utils/validator.js";
+import { validateProject, validateProjectUpdate } from "../utils/validator.js";
 import {
   createProject,
   deleteProject,
@@ -23,7 +23,7 @@ projectRoute.post(
 );
 projectRoute.get("/getAllProjects", getProjects);
 projectRoute.get("/getProjectById/:id", getProjectById);
-projectRoute.put("/updateProject/:id", updateProject);
+projectRoute.put("/updateProject/:id",validateProjectUpdate,handleValidationErrors,  updateProject);
 projectRoute.delete("/deleteProject/:id", deleteProject);
 projectRoute.get("/export/:id", exportProject);
 

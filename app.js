@@ -4,6 +4,7 @@ import cors from "cors";
 import config from "./src/config/environment.js";
 import userRouter from "./src/routes/User.route.js";
 import projectRoute from "./src/routes/Project.route.js";
+import taskRoute from "./src/routes/Task.route.js";
 
 const app = express();
 app.use(
@@ -21,5 +22,6 @@ app.use(cookieParser());
 
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/projects",projectRoute);
+app.use("/api/v1/tasks",taskRoute);
 
 export default app;
