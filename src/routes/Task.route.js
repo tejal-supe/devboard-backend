@@ -9,7 +9,7 @@ const taskRoute = express.Router();
 
 taskRoute.use(authenticateJWT,authenticateAPIKey)
 taskRoute.post("/createTask/:projectId",validateProject,handleValidationErrors,createTask);
-taskRoute.get("/getAllTasks",getAllTasks);
+taskRoute.get("/getAllTasks/:projectId", getAllTasks);
 taskRoute.put("/updateTask/:id",validateProjectUpdate,handleValidationErrors,updateTaskById);
 taskRoute.delete("/deleteTask/:id",deleteTask)
 
