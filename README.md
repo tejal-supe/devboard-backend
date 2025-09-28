@@ -1,0 +1,1 @@
+A production-ready REST API for a task management system (like a simplified Trello) that enables users to organize projects and tasks with JWT authentication, API key security, CRUD operations, and proper project-task-user relationships. Built with Express.js and modular code structure for scalability.
